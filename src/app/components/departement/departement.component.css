@@ -1,0 +1,33 @@
+.container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-family: "Arial", sans-serif;
+  color: #343a40;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.table thead {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn {
+  border-radius: 20px;
+  margin-left: 14px;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+}
