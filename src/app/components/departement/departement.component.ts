@@ -23,6 +23,10 @@ export class DepartementComponent implements OnInit {
     this.loadDepartments();
   }
 
+  createDepartement() {
+    this.router.navigate(['/departments/create']);
+  }
+
   loadDepartments(): void {
     this.departementService.getAllDepartments().subscribe(
       (data) => {
