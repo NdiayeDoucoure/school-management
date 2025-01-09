@@ -10,55 +10,50 @@ import { CommonModule } from '@angular/common';
   styleUrl: './departement.component.css',
 })
 export class DepartementComponent implements OnInit {
-  departements: any[] = [
-    {
-      id: 1,
-      nom: 'Informatique',
-      description: 'Département dédié à la formation en informatique.',
-      filieres: [{ nom: 'Développement Web' }, { nom: 'Réseaux' }],
-    },
-    {
-      id: 2,
-      nom: 'Mathématiques',
-      description: 'Département de mathématiques appliquées et théoriques.',
-      filieres: [{ nom: 'Algèbre' }, { nom: 'Analyse' }],
-    },
-    {
-      id: 3,
-      nom: 'Sciences Sociales',
-      description: "Département d'études sociales et humaines.",
-      filieres: [{ nom: 'Sociologie' }, { nom: 'Psychologie' }],
-    },
-  ];
+  departments: any[] = [];
+  isLoading = true;
 
   constructor(
-    // @Inject(DepartmentService) private departementService: DepartmentService,
+    private departementService: DepartmentService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.loadDepartements();
+    console.log('DepartementComponent initialized');
+    this.loadDepartments();
   }
 
-  loadDepartements(): void {
-    // this.departementService.getDepartements().subscribe((data: any[]) => {
-    //   this.departements = data;
-    // });
+  loadDepartments(): void {
+    this.departementService.getAllDepartments().subscribe(
+      (data) => {
+        this.departments = data;
+        this.isLoading = false;
+        console.log('Departments loaded:', this.departments);
+      },
+      (error) => {
+        this.isLoading = false;
+        console.error(
+          'Erreur lors de la récupération des départements :',
+          error
+        );
+      }
+    );
   }
 
-  viewDepartement(id: number): void {
-    this.router.navigate([`/departements/${id}`]);
+  viewDepartement(id: number) {
+    this.router.navigate(['/departments', id]);
   }
 
-  deleteDepartement(id: number): void {
-    if (confirm('Voulez-vous supprimer ce département ?')) {
-      this.departements = this.departements.filter(
-        (departement) => departement.id !== id
-      );
-    }
-  }
-
-  createDepartement(): void {
-    this.router.navigate(['/departements/create']);
+  deleteDepartement(id: number) {
+    this.departementService.deleteDepartment(id).subscribe(
+      () => {
+        this.departments = this.departments.filter(
+          (department) => department.idDepartment !== id
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression du département :', error);
+      }
+    );
   }
 }
