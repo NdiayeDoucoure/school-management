@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../../services/department.service';
 import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './department-create.component.html',
   styleUrl: './department-create.component.css',
 })
-export class DepartmentCreateComponent {
+export class DepartmentCreateComponent implements OnInit {
   department: any = {
     nameDepartment: '',
     descriptionDepartment: '',
@@ -27,6 +27,8 @@ export class DepartmentCreateComponent {
     private departmentService: DepartmentService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {}
 
   addSector(): void {
     this.department.sectors.push({

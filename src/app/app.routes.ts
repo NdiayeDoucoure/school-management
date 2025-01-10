@@ -8,6 +8,6 @@ import { DepartmentCreateComponent } from './components/department-create/depart
 export const routes: Routes = [
   { path: 'departments', component: DepartementComponent },
   { path: 'departments/:id', component: DepartmentDetailComponent },
-  { path: 'departments/create', component: DepartmentCreateComponent },
+  { path: 'create', component: DepartmentCreateComponent },
   { path: '', component: HomeComponent },
 ];

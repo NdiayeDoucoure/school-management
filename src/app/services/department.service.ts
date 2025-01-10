@@ -10,7 +10,7 @@ interface Sector {
 }
 
 interface Department {
-  idDepartment: number;
+  idDepartment?: number;
   nameDepartment: string;
   descriptionDepartment: string;
   sectors?: Sector[];
@@ -36,7 +36,8 @@ export class DepartmentService {
 
   // Créer un nouveau département
   createDepartment(department: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, department);
+    delete department.idDepartment;
+    return this.http.post<Department>(this.apiUrl, department);
   }
 
   // Mettre à jour un département existant

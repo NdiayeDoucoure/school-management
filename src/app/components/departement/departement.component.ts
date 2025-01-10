@@ -23,10 +23,6 @@ export class DepartementComponent implements OnInit {
     this.loadDepartments();
   }
 
-  createDepartement() {
-    this.router.navigate(['/departments/create']);
-  }
-
   loadDepartments(): void {
     this.departementService.getAllDepartments().subscribe(
       (data) => {
@@ -48,16 +44,32 @@ export class DepartementComponent implements OnInit {
     this.router.navigate(['/departments', id]);
   }
 
+  createDepartement() {
+    this.router.navigate(['/create']);
+  }
+
   deleteDepartement(id: number) {
-    this.departementService.deleteDepartment(id).subscribe(
-      () => {
-        this.departments = this.departments.filter(
-          (department) => department.idDepartment !== id
-        );
-      },
-      (error) => {
-        console.error('Erreur lors de la suppression du département :', error);
-      }
+    const confirmDelete = window.confirm(
+      'Êtes-vous sûr de vouloir supprimer ce département ?'
     );
+    if (confirmDelete) {
+      this.departementService.deleteDepartment(id).subscribe(
+        () => {
+          this.departments = this.departments.filter(
+            (department) => department.idDepartment !== id
+          );
+          alert('Département supprimé avec succès !');
+        },
+        (error) => {
+          console.error(
+            'Erreur lors de la suppression du département :',
+            error
+          );
+          alert(
+            'Une erreur est survenue lors de la suppression du département.'
+          );
+        }
+      );
+    }
   }
 }

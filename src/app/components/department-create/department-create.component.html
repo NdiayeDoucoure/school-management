@@ -1,67 +1,79 @@
-<h1>Créer un département</h1>
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="nameDepartment">Nom du département :</label>
-    <input
-      type="text"
-      id="nameDepartment"
-      [(ngModel)]="department.nameDepartment"
-      name="nameDepartment"
-      required
-    />
-  </div>
+<div class="department-create-container">
+  <h1>Créer un département</h1>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nameDepartment">Nom du département :</label>
+      <input
+        type="text"
+        id="nameDepartment"
+        [(ngModel)]="department.nameDepartment"
+        name="nameDepartment"
+        required
+        class="form-control"
+      />
+    </div>
 
-  <div>
-    <label for="descriptionDepartment">Description :</label>
-    <textarea
-      id="descriptionDepartment"
-      [(ngModel)]="department.descriptionDepartment"
-      name="descriptionDepartment"
-    ></textarea>
-  </div>
+    <div class="form-group">
+      <label for="descriptionDepartment">Description :</label>
+      <textarea
+        id="descriptionDepartment"
+        [(ngModel)]="department.descriptionDepartment"
+        name="descriptionDepartment"
+        class="form-control"
+      ></textarea>
+    </div>
 
-  <h3>Filières</h3>
-  <div *ngFor="let sector of department.sectors; let i = index">
-    <fieldset>
-      <legend>Filière {{ i + 1 }}</legend>
-      <div>
-        <label for="nameSector-{{ i }}">Nom :</label>
-        <input
-          type="text"
-          id="nameSector-{{ i }}"
-          [(ngModel)]="sector.nameSector"
-          name="nameSector-{{ i }}"
-          required
-        />
-      </div>
+    <h3>Filières</h3>
+    <div
+      *ngFor="let sector of department.sectors; let i = index"
+      class="sector-group"
+    >
+      <fieldset>
+        <legend>Filière {{ i + 1 }}</legend>
+        <div class="form-group">
+          <label for="nameSector-{{ i }}">Nom :</label>
+          <input
+            type="text"
+            id="nameSector-{{ i }}"
+            [(ngModel)]="sector.nameSector"
+            name="nameSector-{{ i }}"
+            required
+            class="form-control"
+          />
+        </div>
 
-      <div>
-        <label for="acronym-{{ i }}">Acronyme :</label>
-        <input
-          type="text"
-          id="acronym-{{ i }}"
-          [(ngModel)]="sector.acronym"
-          name="acronym-{{ i }}"
-          required
-        />
-      </div>
+        <div class="form-group">
+          <label for="acronym-{{ i }}">Acronyme :</label>
+          <input
+            type="text"
+            id="acronym-{{ i }}"
+            [(ngModel)]="sector.acronym"
+            name="acronym-{{ i }}"
+            required
+            class="form-control"
+          />
+        </div>
 
-      <div>
-        <label for="description-{{ i }}">Description :</label>
-        <textarea
-          id="description-{{ i }}"
-          [(ngModel)]="sector.description"
-          name="description-{{ i }}"
-        ></textarea>
-      </div>
+        <div class="form-group">
+          <label for="description-{{ i }}">Description :</label>
+          <textarea
+            id="description-{{ i }}"
+            [(ngModel)]="sector.description"
+            name="description-{{ i }}"
+            class="form-control"
+          ></textarea>
+        </div>
 
-      <button type="button" (click)="removeSector(i)">
-        Supprimer cette filière
-      </button>
-    </fieldset>
-  </div>
+        <button type="button" (click)="removeSector(i)" class="btn btn-danger">
+          Supprimer cette filière
+        </button>
+      </fieldset>
+    </div>
 
-  <button type="button" (click)="addSector()">Ajouter une filière</button>
+    <button type="button" (click)="addSector()" class="btn btn-secondary">
+      Ajouter une filière
+    </button>
 
-  <button type="submit">Créer le département</button>
-</form>
+    <button type="submit" class="btn btn-primary">Créer le département</button>
+  </form>
+</div>
