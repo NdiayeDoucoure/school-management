@@ -1,16 +1,15 @@
-<div class="department-detail-container">
+<div *ngIf="!loading && department" class="department-detail-container">
   <h1>Détails du département</h1>
-  <div *ngIf="department" class="department-info">
-    <h2>{{ department.nameDepartment }}</h2>
-    <p>{{ department.descriptionDepartment }}</p>
-    <h3>Filières</h3>
-    <ul class="sectors-list">
-      <li *ngFor="let sector of department.sectors" class="sector-item">
-        <span class="sector-name"
-          >{{ sector.nameSector }} ({{ sector.acronym }})</span
-        >
-        <span class="sector-description">{{ sector.description }}</span>
-      </li>
-    </ul>
-  </div>
+  <h2>{{ department.nameDepartment }}</h2>
+  <p>{{ department.descriptionDepartment }}</p>
+
+  <h3>Filières</h3>
+  <ul class="sectors-list">
+    <li *ngFor="let sector of department.sectors" class="sector-item">
+      <span class="sector-name">
+        {{ sector.nameSector }} ({{ sector.acronym }})
+      </span>
+      <span class="sector-description">{{ sector.description }}</span>
+    </li>
+  </ul>
 </div>

@@ -19,7 +19,7 @@ export class DepartementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('DepartementComponent initialized');
+    //console.log('DepartementComponent initialized');
     this.loadDepartments();
   }
 
@@ -32,7 +32,7 @@ export class DepartementComponent implements OnInit {
       (data) => {
         this.departments = data;
         this.isLoading = false;
-        console.log('Departments loaded:', this.departments);
+        //console.log('Departments loaded:', this.departments);
       },
       (error) => {
         this.isLoading = false;

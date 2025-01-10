@@ -35,8 +35,8 @@ export class DepartmentService {
   }
 
   // Créer un nouveau département
-  createDepartment(department: Department): Observable<Department> {
-    return this.http.post<Department>(this.apiUrl, department);
+  createDepartment(department: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, department);
   }
 
   // Mettre à jour un département existant
