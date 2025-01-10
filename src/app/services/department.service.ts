@@ -36,7 +36,7 @@ export class DepartmentService {
 
   // Créer un nouveau département
   createDepartment(department: any): Observable<any> {
-    delete department.idDepartment;
+    //delete department.idDepartment;
     return this.http.post<Department>(this.apiUrl, department);
   }
 
